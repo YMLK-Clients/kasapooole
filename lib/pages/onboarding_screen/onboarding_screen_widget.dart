@@ -484,6 +484,8 @@ class _OnboardingScreenWidgetState extends State<OnboardingScreenWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                // navigate to home screen
+
                                 context.pushNamed('Home');
                               },
                               child: ClipRRect(
@@ -501,13 +503,15 @@ class _OnboardingScreenWidgetState extends State<OnboardingScreenWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(25.0, 8.0, 25.0, 25.0),
+                          EdgeInsetsDirectional.fromSTEB(25.0, 8.0, 25.0, 30.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          // navigate to home screen
+
                           context.pushNamed('Home');
                         },
                         child: Text(

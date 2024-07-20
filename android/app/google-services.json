@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067757683085",
+    "project_id": "kasapoole-40eca",
+    "storage_bucket": "kasapoole-40eca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067757683085:android:cfd0b2ae2080809da43dc4",
+        "android_client_info": {
+          "package_name": "com.mycompany.kasapoole"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY5Xa-tKSXPA-_GrQ_E7juDmdT3_dVon8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

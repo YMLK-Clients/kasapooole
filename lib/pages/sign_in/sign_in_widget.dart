@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -201,7 +202,9 @@ class _SignInWidgetState extends State<SignInWidget>
                   ),
                   Container(
                     width: 331.0,
-                    height: 511.0,
+                    constraints: BoxConstraints(
+                      minHeight: 511.0,
+                    ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).info,
                       borderRadius: BorderRadius.circular(40.0),
@@ -382,7 +385,19 @@ class _SignInWidgetState extends State<SignInWidget>
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed('onboardingScreen');
+                            GoRouter.of(context).prepareAuthEvent();
+
+                            final user = await authManager.signInWithEmail(
+                              context,
+                              _model.emailAddressTextController.text,
+                              _model.passwordTextController.text,
+                            );
+                            if (user == null) {
+                              return;
+                            }
+
+                            context.pushNamedAuth(
+                                'onboardingScreen', context.mounted);
                           },
                           text: 'Login',
                           options: FFButtonOptions(
@@ -406,6 +421,33 @@ class _SignInWidgetState extends State<SignInWidget>
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('SignUp');
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 8.0, 8.0, 16.0),
+                              child: Text(
+                                'Don\'t have an account? Sign Up here',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ),
                           ),
                         ),
                       ].divide(SizedBox(height: 27.0)),

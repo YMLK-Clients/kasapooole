@@ -1,5 +1,8 @@
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,6 +47,8 @@ class _ToLanguageComponentWidgetState extends State<ToLanguageComponentWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Material(
       color: Colors.transparent,
       elevation: 5.0,
@@ -189,6 +194,58 @@ class _ToLanguageComponentWidgetState extends State<ToLanguageComponentWidget> {
                 ),
               ),
               Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
+                child: FlutterFlowDropDown<String>(
+                  controller: _model.toDropDownValueController ??=
+                      FormFieldController<String>(
+                    _model.toDropDownValue ??= '',
+                  ),
+                  options: List<String>.from(
+                      FFAppState().allLanguages.map((e) => e.code).toList()),
+                  optionLabels:
+                      FFAppState().allLanguages.map((e) => e.name).toList(),
+                  onChanged: (val) =>
+                      setState(() => _model.toDropDownValue = val),
+                  width: double.infinity,
+                  height: 56.0,
+                  searchHintTextStyle:
+                      FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Inter',
+                            color: FlutterFlowTheme.of(context).info,
+                            letterSpacing: 0.0,
+                          ),
+                  searchTextStyle:
+                      FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Inter',
+                            color: FlutterFlowTheme.of(context).info,
+                            letterSpacing: 0.0,
+                          ),
+                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        color: FlutterFlowTheme.of(context).info,
+                        letterSpacing: 0.0,
+                      ),
+                  hintText: 'Please select a language...',
+                  searchHintText: 'Search for an item...',
+                  searchCursorColor: FlutterFlowTheme.of(context).info,
+                  icon: Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    color: FlutterFlowTheme.of(context).info,
+                    size: 24.0,
+                  ),
+                  fillColor: Color(0xFF3A3A3A),
+                  elevation: 2.0,
+                  borderColor: Colors.transparent,
+                  borderWidth: 2.0,
+                  borderRadius: 20.0,
+                  margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                  hidesUnderline: true,
+                  isOverButton: false,
+                  isSearchable: true,
+                  isMultiSelect: false,
+                ),
+              ),
+              Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 25.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -209,188 +266,94 @@ class _ToLanguageComponentWidgetState extends State<ToLanguageComponentWidget> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 54.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3A3A3A),
-                          borderRadius: BorderRadius.circular(17.0),
-                        ),
-                        child: Padding(
+                child: Builder(
+                  builder: (context) {
+                    final allLanguages =
+                        FFAppState().allLanguages.map((e) => e).toList();
+
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: allLanguages.length,
+                      itemBuilder: (context, allLanguagesIndex) {
+                        final allLanguagesItem =
+                            allLanguages[allLanguagesIndex];
+                        return Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 8.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Ga',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
+                              16.0, 15.0, 16.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              // updateToLanguage
+                              FFAppState().updateToLanguageStruct(
+                                (e) => e
+                                  ..language = allLanguagesItem.name
+                                  ..code = allLanguagesItem.code,
+                              );
+                              _model.updatePage(() {});
+                              // close bottom sheet
+                              Navigator.pop(context);
+                              // success message
+                              ScaffoldMessenger.of(context).clearSnackBars();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    '${allLanguagesItem.name} selected!',
+                                    style: GoogleFonts.getFont(
+                                      'Inter',
+                                      color: Colors.black,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 3000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 54.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF3A3A3A),
+                                borderRadius: BorderRadius.circular(17.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 12.0, 8.0, 12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        allLanguagesItem.name,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 54.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3A3A3A),
-                          borderRadius: BorderRadius.circular(17.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 8.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Twi',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 54.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3A3A3A),
-                          borderRadius: BorderRadius.circular(17.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 8.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Ewe',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 54.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3A3A3A),
-                          borderRadius: BorderRadius.circular(17.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 8.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Hausa',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 54.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF3A3A3A),
-                          borderRadius: BorderRadius.circular(17.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 12.0, 8.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Krobo',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                        );
+                      },
+                    );
+                  },
                 ),
               ),
             ],
