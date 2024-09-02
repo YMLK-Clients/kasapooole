@@ -11,17 +11,25 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class OcrApiCall {
+class TranscribeAndTranslateAudioCall {
   static Future<ApiCallResponse> call({
-    FFUploadedFile? url,
+    FFUploadedFile? buffer,
+    String? startTime = '',
+    String? endTime = '',
+    String? fromLanguage = '',
+    String? toLanguage = '',
   }) async {
     return ApiManager.instance.makeApiCall(
-      callName: 'OCR API',
-      apiUrl: 'https://hook.us1.make.com/ouwpc98g7j1k2isx1hvshdkql8z8nbvk',
+      callName: 'Transcribe and Translate Audio',
+      apiUrl: 'https://ga2nnj.buildship.run/transcribe',
       callType: ApiCallType.POST,
       headers: {},
       params: {
-        'url': url,
+        'buffer': buffer,
+        'startTime': startTime,
+        'endTime': endTime,
+        'fromLanguage': fromLanguage,
+        'toLanguage': toLanguage,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
@@ -48,17 +56,16 @@ class TranslationAPICall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "in": "${text}",
-  "lang": "${fromLanguage}-${tolanguage}"
+  "fromLanguage": "${fromLanguage}",
+  "toLanguage": "${tolanguage}",
+  "textToTranslate": "${text}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Translation API',
-      apiUrl: 'https://translation-api.ghananlp.org/v1/translate',
+      apiUrl: 'https://ga2nnj.buildship.run/translateTextToText',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-        'Ocp-Apim-Subscription-Key': 'cd9d65ecf49847b38103f043e6bc0c53',
       },
       params: {},
       body: ffApiRequestBody,
@@ -74,7 +81,7 @@ class TranslationAPICall {
 
   static String? response(dynamic response) => castToType<String>(getJsonField(
         response,
-        r'''$''',
+        r'''$.translation''',
       ));
 }
 

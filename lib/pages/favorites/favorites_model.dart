@@ -22,7 +22,5 @@ class FavoritesModel extends FlutterFlowModel<FavoritesWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

@@ -11,6 +11,10 @@ import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cross_file/cross_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:record/record.dart';
+import 'uploaded_file.dart';
 
 import '../main.dart';
 
@@ -103,10 +107,18 @@ String formatNumber(
           formattedValue = NumberFormat.decimalPattern().format(value);
           break;
         case DecimalType.periodDecimal:
-          formattedValue = NumberFormat.decimalPattern('en_US').format(value);
+          if (currency != null) {
+            formattedValue = NumberFormat('#,##0.00', 'en_US').format(value);
+          } else {
+            formattedValue = NumberFormat.decimalPattern('en_US').format(value);
+          }
           break;
         case DecimalType.commaDecimal:
-          formattedValue = NumberFormat.decimalPattern('es_PA').format(value);
+          if (currency != null) {
+            formattedValue = NumberFormat('#,##0.00', 'es_PA').format(value);
+          } else {
+            formattedValue = NumberFormat.decimalPattern('es_PA').format(value);
+          }
           break;
       }
       break;
@@ -253,8 +265,15 @@ extension FFTextEditingControllerExt on TextEditingController? {
 }
 
 extension IterableExt<T> on Iterable<T> {
-  List<T> sortedList<S extends Comparable>([S Function(T)? keyOf]) => toList()
-    ..sort(keyOf == null ? null : ((a, b) => keyOf(a).compareTo(keyOf(b))));
+  List<T> sortedList<S extends Comparable>(
+      {S Function(T)? keyOf, bool desc = false}) {
+    final sortedAscending = toList()
+      ..sort(keyOf == null ? null : ((a, b) => keyOf(a).compareTo(keyOf(b))));
+    if (desc) {
+      return sortedAscending.reversed.toList();
+    }
+    return sortedAscending;
+  }
 
   List<S> mapIndexed<S>(S Function(int, T) func) => toList()
       .asMap()
@@ -360,6 +379,61 @@ extension StatefulWidgetExtensions on State<StatefulWidget> {
       setState(fn);
     }
   }
+}
+
+Future<void> startAudioRecording(
+  BuildContext context, {
+  required AudioRecorder audioRecorder,
+}) async {
+  if (await audioRecorder.hasPermission()) {
+    final String path;
+    final AudioEncoder encoder;
+    if (kIsWeb) {
+      path = '';
+      encoder = AudioEncoder.opus;
+    } else {
+      final dir = await getApplicationDocumentsDirectory();
+      path = '${dir.path}/audio_${DateTime.now().millisecondsSinceEpoch}.m4a';
+      encoder = AudioEncoder.aacLc;
+    }
+    await audioRecorder.start(
+      RecordConfig(encoder: encoder),
+      path: path,
+    );
+  } else {
+    if (!context.mounted) {
+      return;
+    }
+    showSnackbar(
+      context,
+      'You have not provided permission to record audio.',
+    );
+  }
+}
+
+Future<void> stopAudioRecording({
+  required AudioRecorder? audioRecorder,
+  required String audioName,
+  required Function(String?, FFUploadedFile) onRecordingComplete,
+}) async {
+  if (audioRecorder == null) {
+    return;
+  }
+  final recordedPath = await audioRecorder.stop();
+  final recordedFilePath = !kIsWeb && (Platform.isIOS || Platform.isMacOS)
+      ? 'file://$recordedPath'
+      : recordedPath;
+  if (recordedFilePath == null) {
+    return;
+  }
+  final recordedFileBytes = FFUploadedFile(
+    name: audioName,
+    bytes: await XFile(recordedPath!).readAsBytes(),
+  );
+  onRecordingComplete(
+    recordedFilePath,
+    recordedFileBytes,
+  );
 }
 
 // For iOS 16 and below, set the status bar color to match the app's theme.

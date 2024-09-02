@@ -3,7 +3,6 @@ import '/backend/schema/structs/index.dart';
 import '/components/audio_player/audio_player_widget.dart';
 import '/components/emptylist/emptylist_widget.dart';
 import '/components/from_language_component/from_language_component_widget.dart';
-import '/components/image_extraction_loading_indicator/image_extraction_loading_indicator_widget.dart';
 import '/components/loadingndicator/loadingndicator_widget.dart';
 import '/components/to_language_component/to_language_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -11,7 +10,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
 import 'dart:math';
 import 'dart:math' as math;
 import 'translate_widget.dart' show TranslateWidget;
@@ -29,6 +27,8 @@ class TranslateModel extends FlutterFlowModel<TranslateWidget> {
   String? transalatedTextAudioURL;
 
   bool translationComplete = false;
+
+  bool showUploadCameraWidget = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -57,12 +57,6 @@ class TranslateModel extends FlutterFlowModel<TranslateWidget> {
   ApiCallResponse? tTSapiResult;
   // Stores action output result for [Backend Call - API (Translation API)] action in translateButton widget.
   ApiCallResponse? translateAPI;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // Stores action output result for [Backend Call - API (OCR API)] action in cameraButtonContainer widget.
-  ApiCallResponse? apiResult333;
 
   @override
   void initState(BuildContext context) {
@@ -72,7 +66,6 @@ class TranslateModel extends FlutterFlowModel<TranslateWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     translateTextFieldFocusNode?.dispose();
     translateTextFieldTextController?.dispose();
 

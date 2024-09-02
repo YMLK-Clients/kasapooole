@@ -1,5 +1,4 @@
 import '/flutter_flow/flutter_flow_audio_player.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -89,7 +88,6 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                           audio: Audio.network(
                             FFAppState().audioUrl,
                             metas: Metas(
-                              id: '2vqf7_-402d00bb',
                               title: 'Play Translation Audio',
                             ),
                           ),
@@ -126,60 +124,6 @@ class _AudioPlayerWidgetState extends State<AudioPlayerWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                      child: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30.0,
-                        borderWidth: 1.0,
-                        buttonSize: 44.0,
-                        icon: Icon(
-                          Icons.notifications_none,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
-                        ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                      child: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30.0,
-                        borderWidth: 1.0,
-                        buttonSize: 44.0,
-                        icon: Icon(
-                          Icons.settings_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
-                        ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                      child: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30.0,
-                        borderWidth: 1.0,
-                        buttonSize: 44.0,
-                        icon: Icon(
-                          Icons.keyboard_control,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
-                        ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
-                    ),
                     FFButtonWidget(
                       onPressed: () async {
                         Navigator.pop(context);

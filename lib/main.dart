@@ -9,7 +9,7 @@ import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
 import 'backend/firebase/firebase_config.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -136,6 +136,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Home': HomeWidget(),
       'Translate': TranslateWidget(),
+      'Conversation': ConversationWidget(),
       'Favorites': FavoritesWidget(),
       'Profile': ProfileWidget(),
     };
@@ -212,12 +213,12 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.star,
+                  Icons.record_voice_over,
                   color: currentIndex == 2 ? Colors.black : Color(0xFF858080),
                   size: 24.0,
                 ),
                 Text(
-                  'Favorite',
+                  'Speak',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2 ? Colors.black : Color(0xFF858080),
@@ -232,15 +233,35 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  currentIndex == 3 ? Icons.person_sharp : Icons.person,
+                  Icons.star,
                   color: currentIndex == 3 ? Colors.black : Color(0xFF858080),
-                  size: currentIndex == 3 ? 24.0 : 24.0,
+                  size: 24.0,
+                ),
+                Text(
+                  'Favorite',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 3 ? Colors.black : Color(0xFF858080),
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  currentIndex == 4 ? Icons.person_sharp : Icons.person,
+                  color: currentIndex == 4 ? Colors.black : Color(0xFF858080),
+                  size: currentIndex == 4 ? 24.0 : 24.0,
                 ),
                 Text(
                   'Profile',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 3 ? Colors.black : Color(0xFF858080),
+                    color: currentIndex == 4 ? Colors.black : Color(0xFF858080),
                     fontSize: 11.0,
                   ),
                 ),

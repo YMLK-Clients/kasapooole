@@ -15,7 +15,5 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

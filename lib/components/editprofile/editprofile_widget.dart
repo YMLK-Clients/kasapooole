@@ -240,7 +240,7 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
                           ),
                         );
                       },
-                      text: 'Save Chnages',
+                      text: 'Save Changes',
                       options: FFButtonOptions(
                         width: 270.0,
                         height: 50.0,

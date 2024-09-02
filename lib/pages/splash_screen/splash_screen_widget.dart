@@ -36,35 +36,36 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () async {
-            context.pushNamed('SignUp');
-          },
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.asset(
-                  'assets/images/splash_(1).png',
-                ).image,
+    return Title(
+        title: 'SplashScreen',
+        color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.pushNamed('SignUp');
+              },
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.asset(
+                      'assets/images/splash_(1).png',
+                    ).image,
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

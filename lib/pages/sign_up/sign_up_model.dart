@@ -44,7 +44,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     fullnameFocusNode?.dispose();
     fullnameTextController?.dispose();
 

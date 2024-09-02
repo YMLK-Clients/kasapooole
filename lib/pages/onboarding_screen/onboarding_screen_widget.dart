@@ -306,235 +306,241 @@ class _OnboardingScreenWidgetState extends State<OnboardingScreenWidget>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Color(0xD8222222),
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            alignment: AlignmentDirectional(0.0, 0.0),
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/Rectangle_5.png',
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Align(
+    return Title(
+        title: 'onboardingScreen',
+        color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: Color(0xD8222222),
+            body: SafeArea(
+              top: true,
+              child: Stack(
                 alignment: AlignmentDirectional(0.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xD8222222),
-                  ),
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 0.0),
-                      child: Text(
-                        'Translation of more than 10 local languages in Ghana!',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context).info,
-                              fontSize: 32.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ).animateOnPageLoad(
-                          animationsMap['textOnPageLoadAnimation1']!),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          25.0, 21.0, 25.0, 50.0),
-                      child: Text(
-                        'You can translate all your texts and audio from english or vice versa without any problems',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context).info,
-                              fontSize: 15.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                            ),
-                      ).animateOnPageLoad(
-                          animationsMap['textOnPageLoadAnimation2']!),
-                    ),
-                    Container(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/Rectangle_5.png',
                       width: double.infinity,
-                      height: 413.0,
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/adinkra_yellow_(1).png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation1']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.7, -1.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/Vector_(2).png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation2']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, -0.3),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/Vector_(3).png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation3']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(1.0, -0.3),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/adinkra_red.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation4']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, -0.8),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/adinkra_mustard_yellow.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation5']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(-0.5, 0.4),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/adinkra_green.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation6']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.5, 0.4),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/adinkra_green_6.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation7']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 1.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/Vector_(4).png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation8']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(1.0, 1.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                'assets/images/adinkra_white.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation9']!),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 1.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                // navigate to home screen
-
-                                context.pushNamed('Home');
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/Icon.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ).animateOnPageLoad(
-                                animationsMap['imageOnPageLoadAnimation10']!),
-                          ),
-                        ],
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Color(0xD8222222),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(25.0, 8.0, 25.0, 30.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          // navigate to home screen
+                  ),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              25.0, 50.0, 25.0, 0.0),
+                          child: Text(
+                            'Translation of more than 5 local languages in Ghana!',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).info,
+                                  fontSize: 32.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation1']!),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              25.0, 21.0, 25.0, 50.0),
+                          child: Text(
+                            'You can translate all your texts and audio from english or vice versa without any problems',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).info,
+                                  fontSize: 15.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation2']!),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 413.0,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/adinkra_yellow_(1).png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation1']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.7, -1.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/Vector_(2).png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation2']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.0, -0.3),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/Vector_(3).png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation3']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(1.0, -0.3),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/adinkra_red.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation4']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, -0.8),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/adinkra_mustard_yellow.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation5']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(-0.5, 0.4),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/adinkra_green.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation6']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.5, 0.4),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/adinkra_green_6.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation7']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 1.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/Vector_(4).png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation8']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(1.0, 1.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/adinkra_white.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation9']!),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 1.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    // navigate to home screen
 
-                          context.pushNamed('Home');
-                        },
-                        child: Text(
-                          'Lets Go!',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    context.pushNamed('Home');
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'assets/images/Icon.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'imageOnPageLoadAnimation10']!),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              25.0, 8.0, 25.0, 30.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              // navigate to home screen
+
+                              context.pushNamed('Home');
+                            },
+                            child: Text(
+                              'Lets Go!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context).info,
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['textOnPageLoadAnimation3']!),
                         ),
-                      ).animateOnPageLoad(
-                          animationsMap['textOnPageLoadAnimation3']!),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

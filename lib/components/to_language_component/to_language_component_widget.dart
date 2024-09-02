@@ -1,8 +1,6 @@
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -191,58 +189,6 @@ class _ToLanguageComponentWidgetState extends State<ToLanguageComponentWidget> {
                       ],
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 15.0, 16.0, 0.0),
-                child: FlutterFlowDropDown<String>(
-                  controller: _model.toDropDownValueController ??=
-                      FormFieldController<String>(
-                    _model.toDropDownValue ??= '',
-                  ),
-                  options: List<String>.from(
-                      FFAppState().allLanguages.map((e) => e.code).toList()),
-                  optionLabels:
-                      FFAppState().allLanguages.map((e) => e.name).toList(),
-                  onChanged: (val) =>
-                      setState(() => _model.toDropDownValue = val),
-                  width: double.infinity,
-                  height: 56.0,
-                  searchHintTextStyle:
-                      FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Inter',
-                            color: FlutterFlowTheme.of(context).info,
-                            letterSpacing: 0.0,
-                          ),
-                  searchTextStyle:
-                      FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Inter',
-                            color: FlutterFlowTheme.of(context).info,
-                            letterSpacing: 0.0,
-                          ),
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        color: FlutterFlowTheme.of(context).info,
-                        letterSpacing: 0.0,
-                      ),
-                  hintText: 'Please select a language...',
-                  searchHintText: 'Search for an item...',
-                  searchCursorColor: FlutterFlowTheme.of(context).info,
-                  icon: Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: FlutterFlowTheme.of(context).info,
-                    size: 24.0,
-                  ),
-                  fillColor: Color(0xFF3A3A3A),
-                  elevation: 2.0,
-                  borderColor: Colors.transparent,
-                  borderWidth: 2.0,
-                  borderRadius: 20.0,
-                  margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                  hidesUnderline: true,
-                  isOverButton: false,
-                  isSearchable: true,
-                  isMultiSelect: false,
                 ),
               ),
               Padding(

@@ -134,6 +134,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Favorites')
               : FavoritesWidget(),
+        ),
+        FFRoute(
+          name: 'Conversation',
+          path: '/conversation',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Conversation')
+              : ConversationWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

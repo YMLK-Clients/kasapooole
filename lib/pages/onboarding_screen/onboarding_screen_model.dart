@@ -19,7 +19,5 @@ class OnboardingScreenModel extends FlutterFlowModel<OnboardingScreenWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

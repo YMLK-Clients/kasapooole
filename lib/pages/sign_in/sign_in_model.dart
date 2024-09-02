@@ -32,7 +32,6 @@ class SignInModel extends FlutterFlowModel<SignInWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
 

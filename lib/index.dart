@@ -8,3 +8,4 @@ export '/pages/home/home_widget.dart' show HomeWidget;
 export '/pages/translate/translate_widget.dart' show TranslateWidget;
 export '/pages/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/favorites/favorites_widget.dart' show FavoritesWidget;
+export '/pages/conversation/conversation_widget.dart' show ConversationWidget;
